@@ -14,7 +14,15 @@ import java.io.IOException;
 */
 public interface AreaImportService {
     /**
-    @param是java文档注释
+    注意：普通//单行注释不会生成文档提示，只有/***/的javadoc才生效
+    
+    @param，@return,@throws都是java文档注释
+    //这三个一定要按照顺序写，先进来后出去最后报错
+    @param: 讲传入进来什么
+    @return: 讲返回出去什么
+    @throws：讲会抛出什么异常
+
+    
     @Transactional 事务注解
     @param shpFilepath shp文件路径
     @param targetFilePath 目标输出文件路径
