@@ -29,10 +29,14 @@ public interface AreaImportService {
     @return String 返回处理结果消息
     @throws IO Exception 文件读写异常，调用方必须处理这个异常
     */
+
+    //rollbackFor = Exception.class 代表只要抛出任何Exception（包含检查异常）全部回滚
+    //避免导入一半出错，数据库残留一半数据
     @Transactional(rollbackFor = Exception.class)
     String mergeAreaToTarget(String shpFilePath, String targetFilePath) throws IOException;
 
     // 原有面积入库接口
+    //ImportSummaryVO:VO是视图对象，专门用来返回给上层controller，存放导入之后的统计信息（成功多少条，失败多少条，错误原因）
     ImportSummaryVO mergeAreaToDatabase(String shpFilePath, String targetFilePath) throws IOException;
 
     // 新增：云申监测点 → 三维模型Excel转换接口
