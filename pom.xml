@@ -1,79 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<?xml version="1.0" encoding="UTF-8"?>                          <!-- ① 固定：XML声明 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"              <!-- ② 固定：project根标签 -->
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <!-- SpringBoot父工程 3.2.0 稳定版 -->
+    
+    <modelVersion>4.0.0</modelVersion>                            <!-- ③ 固定：模型版本 -->
+    
+    <!-- ④ 父工程：Spring Boot项目固定写这个，版本号改一下就行 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.0</version>                                   <!-- 改这里：Spring Boot版本 -->
         <relativePath/>
     </parent>
-
-    <groupId>com.example</groupId>
-    <artifactId>appendarea</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>appendarea</name>
-    <description>shp面积同步至FXQ_FZYA01A</description>
-
+    
+    <!-- ⑤ 项目坐标：groupId/artifactId/version 这三个是项目唯一标识 -->
+    <groupId>com.example</groupId>                                 <!-- 改这里：公司/组织域名倒写 -->
+    <artifactId>appendarea</artifactId>                             <!-- 改这里：项目名 -->
+    <version>0.0.1-SNAPSHOT</version>                              <!-- 改这里：版本号 -->
+    <name>appendarea</name>                                         <!-- 改这里：项目显示名 -->
+    <description>shp面积同步至FXQ_FZYA01A</description>           <!-- 改这里：项目描述 -->
+    
+    <!-- ⑥ 属性定义：统一管理版本号、编码等 -->
     <properties>
-        <java.version>17</java.version>
-        <!-- 统一编码，防止中文报错 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>                             <!-- 改这里：Java版本 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  <!-- 固定：UTF-8编码 -->
     </properties>
-
+    
+    <!-- ⑦ 依赖列表：这里是最常改的，需要什么加什么 -->
     <dependencies>
-        <!-- SpringBoot Web 核心，解决@RestController爆红 -->
+        <!-- Web核心：写接口必加 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- SpringBoot 测试包，内置junit5 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- MyBatis SpringBoot整合 -->
+        
+        <!-- MyBatis：操作数据库必加 -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>3.0.3</version>
         </dependency>
-        <!-- POI Excel -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <!-- Oracle驱动 -->
+        
+        <!-- 数据库驱动：Oracle用ojdbc8，MySQL用mysql-connector-j，PostgreSQL用postgresql -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- EasyExcel 解析Excel -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        
+        <!-- 其他依赖按需加... -->
     </dependencies>
-
+    
+    <!-- ⑧ 构建配置：Spring Boot项目固定加这个插件 -->
     <build>
         <plugins>
             <plugin>
@@ -82,8 +61,8 @@
             </plugin>
         </plugins>
     </build>
-
-    <!-- 新增阿里云国内仓库，解决依赖找不到核心问题 -->
+    
+    <!-- ⑨ 仓库配置：国内下载慢就加阿里云，固定写法 -->
     <repositories>
         <repository>
             <id>aliyunmaven</id>
@@ -91,11 +70,4 @@
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>aliyunmaven</id>
-            <name>阿里云公共仓库</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
